@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject plusOne;
 
     string[] stringColors = { "#35E2F2", "#F6DF0E", "#FF0080", "#8C13FB" };
+    string[] colorsNames = { "Cyan", "Yellow", "Pink", "Purple" };
+
     public string CurrentColor;
     SpriteRenderer sr;
 
@@ -51,7 +53,6 @@ public class Player : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         int index = Random.Range(0, colors.Length);
         sr.color = colors[index];
-        string[] colorsNames = { "Cyan", "Yellow", "Pink", "Purple" };
         CurrentColor = colorsNames[index];
     }
 
