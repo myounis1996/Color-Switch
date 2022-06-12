@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Rotate : MonoBehaviour
 {
@@ -12,11 +10,8 @@ public class Rotate : MonoBehaviour
     {
         index = Random.Range(0, direction.Length);
     }
-
-    // Update is called once per frame
     void Update()
     {
         transform.Rotate(0f, 0f, direction[index] * rotationSpeed * Time.deltaTime);
-   
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPooling : MonoBehaviour
@@ -14,7 +13,6 @@ public class ObjectPooling : MonoBehaviour
     {
         current = this;
     }
-    // Start is called before the first frame update
     void Start()
     {
         pooledObjects = new List<GameObject>();
@@ -35,7 +33,6 @@ public class ObjectPooling : MonoBehaviour
             if (!pooledObjects[i].activeInHierarchy)
                 return pooledObjects[i];
         }
-
         if (willGrow)
         {
             GameObject obj = (GameObject)Instantiate(objectsToPool[index]);

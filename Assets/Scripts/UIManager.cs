@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PauseMenu : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     public GameObject pauseMenuUI;
-
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -21,8 +18,6 @@ public class PauseMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+        Debug.Log ("Quit Game");
     }
-
-
-
 }

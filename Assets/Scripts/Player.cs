@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using System.Collections;
+using UnityEngine.SceneManagement;
+using System;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] Rigidbody2D rb;
-    [SerializeField] float speed = 5f;
-    [SerializeField] Color[] colors;
-    [SerializeField] GameObject colorChanger;
-    [SerializeField] Text pointsText;
-    [SerializeField] GameObject plusOne;
+    public GameObject startPanel;
+    public Rigidbody2D rb;
+    public float speed = 5f;
+    public Color[] colors;
+    public GameObject colorChanger;
+    public Text pointsText;
+    public GameObject plusOne;
 
     string[] stringColors = { "#35E2F2", "#F6DF0E", "#FF0080", "#8C13FB" };
     string[] colorsNames = { "Cyan", "Yellow", "Pink", "Purple" };
@@ -33,11 +34,12 @@ public class Player : MonoBehaviour
         SetRandomColor();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Jump"))
         {
+            if (startPanel.activeInHierarchy)
+                startPanel.SetActive (false);
             rb.velocity = Vector2.up * speed;
             rb.gravityScale = 1.5f;
         }
@@ -51,7 +53,7 @@ public class Player : MonoBehaviour
     public void SetRandomColor()
     {
         sr = GetComponent<SpriteRenderer>();
-        int index = Random.Range(0, colors.Length);
+        int index = UnityEngine.Random.Range(0, colors.Length);
         sr.color = colors[index];
         CurrentColor = colorsNames[index];
     }
@@ -62,12 +64,14 @@ public class Player : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
             rb.gravityScale = 0f;
+            startPanel.SetActive (true);
             return;
         } 
-        if(collision.tag == "LoseCollider")
+        if(Array.IndexOf(colorsNames, collision.tag) != -1 && collision.tag !=CurrentColor)
         {
             Debug.Log("Game over");
             Destroy(gameObject);
+            SceneManager.LoadScene (0);
             return;
         }
         if(collision.tag == "ColorChanger")
@@ -76,10 +80,9 @@ public class Player : MonoBehaviour
             collision.gameObject.SetActive(false);
             return;
         }
-        
         if (collision.tag == "Points")
         {
-            //plusOne.SetActive(true);// here qaddora
+            Destroy(Instantiate (plusOne, collision.transform.position, Quaternion.identity), 1);
             pointsCounter++;
             pointsText.text = pointsCounter.ToString();
             collision.gameObject.SetActive(false);
