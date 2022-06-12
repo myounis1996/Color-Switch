@@ -1693,7 +1693,8 @@ PrefabInstance:
         type: 3}
       propertyPath: plusOne
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4120627785027023388, guid: 2c803f2bf6e50a149847d114f1e06164,
+        type: 3}
     - target: {fileID: 4494448774280674074, guid: faf15d4666becdb40a5461f75f71d581,
         type: 3}
       propertyPath: startPanel

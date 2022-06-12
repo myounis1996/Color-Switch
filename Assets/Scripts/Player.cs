@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
         }
         if (collision.tag == "Points")
         {
-            Destroy(Instantiate (plusOne, collision.transform.position, Quaternion.identity), 1);
+            Destroy(Instantiate (plusOne, transform.position, Quaternion.identity), 1);
             pointsCounter++;
             pointsText.text = pointsCounter.ToString();
             collision.gameObject.SetActive(false);
